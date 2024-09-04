@@ -2,7 +2,7 @@
 
 A classificação de texto é o problema de atribuir um rótulo predefinido a um texto. Por exemplo, se alguém escreveu uma resenha de um filme dizendo "Eu gostei muito do filme, é fantástico!", queremos rotular a resenha como *positiva* ou *negativa*. Este é um problema de classificação de texto (text classification) chamado análise de sentimentos.
 
-'''
+´´´
 !pip install praw nltk matplotlib
 
 import praw
@@ -57,7 +57,7 @@ plt.pie(sizes, explode=explode, labels=labels, colors=colors,
         autopct='%1.1f%%', shadow=True, startangle=140)
 plt.title('Distribuição dos Sentimentos nos Comentários')
 plt.show()
-'''
+´´´
 
 Pegando um post qualquer do r/TheBoys e olhando o gráfico
 
@@ -66,29 +66,29 @@ Pegando um post qualquer do r/TheBoys e olhando o gráfico
 
 ## Português vs Inglês
 
-O Vader é treinado para lidar com inglês(?)
+O VADER foi originalmente projetado para análise de sentimentos em textos em inglês e, portanto, não é adequado para outras línguas.
 
-'''
+´´´
 from transformers import pipeline
 
 classifier = pipeline("sentiment-analysis")
 text = "I hate it"
 classifier(text)
-'''
-'''
+´´´
+´´´
 [{'label': 'NEGATIVE', 'score': 0.9996398687362671}]
-'''
+´´´
 Como não fornecemos um modelo para pipeline(), ele usará um modelo padrão. Nesse caso, é o distilbert-base-uncased-finetuned-sst-2-english.
 
-'''
+´´´
 classifier = pipeline("sentiment-analysis", model="neuralmind/bert-base-portuguese-cased")
 text = "Eu odeio isso"
 classifier(text)
-'''
-'''
+´´´
+´´´
 [{'label': 'LABEL_0', 'score': 0.5079694390296936}]
-'''
-Aqui, especificamos o modelo. LABEL_0 é negativo e LABEL_1 é positivo.
+´´´
+Aqui, especificamos o modelo. LABEL_0 é para negativo e LABEL_1 é para positivo.
 
 Podemos ver que apesar de ser uma sentença bem simples e sem ambiguidade, o modelo dá um score de 0.5, o que indica, numa primeira análise, que ele simplesmente não é muito bom.
 
