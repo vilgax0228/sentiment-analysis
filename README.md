@@ -1,12 +1,3 @@
-# O que é uma API
-Uma **API** (Application Programming Interface, ou Interface de Programação de Aplicações) é um conjunto de definições e protocolos que permitem que diferentes sistemas ou aplicativos se comuniquem entre si. Em outras palavras, uma API define as regras e métodos pelos quais um software pode solicitar serviços de outro, facilitando a integração entre sistemas.
-
-1. **Intermediário de Comunicação:** A API age como um intermediário, permitindo que um software interaja com outro sem que eles precisem conhecer os detalhes internos de como o outro funciona.
-2. **Padronização:** APIs estabelecem um conjunto de regras e funções que os desenvolvedores devem seguir ao integrar seus sistemas. Isso garante que a comunicação seja eficiente e previsível.
-3. **Uso Comum:** Elas são amplamente usadas para conectar aplicativos a serviços externos, como ao fazer uma solicitação para um servidor, acessar um banco de dados ou se comunicar com um serviço online (como APIs de redes sociais, APIs de pagamento, etc.).
-
-**Exemplo de uso:** Se um aplicativo quer exibir o clima atual de uma cidade, ele pode usar a API de um serviço meteorológico, que fornece os dados em tempo real para serem exibidos no aplicativo.
-
 # Visão Geral
 
 A classificação de texto é o problema de atribuir um rótulo predefinido a um texto. Por exemplo, se alguém escreveu uma resenha de um filme dizendo "Eu gostei muito do filme, é fantástico!", queremos rotular a resenha como *positiva* ou *negativa*. Este é um problema de classificação de texto (text classification) chamado análise de sentimentos.
@@ -75,6 +66,9 @@ Visualizando a análise de sentimentos do post, id=1fc0h1q, 'AITA for refusing t
 
 O **VADER** foi originalmente projetado para análise de sentimentos em textos em inglês e, portanto, não é adequado para outras línguas.
 
+**Transformers**:
+Para usar imediatamente um modelo em uma entrada fornecida (texto, imagem, áudio, ...), fornecemos a API de pipeline. Os pipelines agrupam um modelo pré-treinado com o pré-processamento que foi utilizado durante o treinamento desse modelo.
+Aqui está como usar rapidamente um pipeline para classificar textos como positivos ou negativos:
 ```
 from transformers import pipeline
 
@@ -87,6 +81,10 @@ classifier(text)
 ```
 Como não fornecemos um modelo para pipeline(), ele usará um modelo padrão. Nesse caso, é o *distilbert-base-uncased-finetuned-sst-2-english*.
 
+A segunda linha de código baixa e armazena em cache o modelo pré-treinado usado pelo pipeline, enquanto a terceira o avalia no texto fornecido. Aqui, a resposta é "positiva" com uma confiança de 99,96%.
+
+Muitas tarefas possuem um pipeline pré-treinado pronto para uso, tanto em NLP (*Natural Language Processing*) quanto em visão computacional e fala.
+
 ```
 classifier = pipeline("sentiment-analysis", model="neuralmind/bert-base-portuguese-cased")
 text = "Eu odeio isso"
@@ -95,9 +93,9 @@ classifier(text)
 ```
 [{'label': 'LABEL_0', 'score': 0.5079694390296936}]
 ```
-Aqui, especificamos o modelo. LABEL_0 é para negativo e LABEL_1 é para positivo.
+Aqui, especificamos o modelo. obs: LABEL_0 é para negativo e LABEL_1 é para positivo.
 
-Podemos ver que apesar de ser uma sentença bem simples e sem ambiguidade, o modelo dá um score de 0.5, o que indica, numa primeira análise, que ele simplesmente não é muito bom.
+Podemos ver que apesar de ser uma sentença bem simples e sem ambiguidade, o modelo dá um score (confiança) de 50,79%, o que indica, numa primeira análise, que ele simplesmente não é muito bom.
 
 ## Coleta de Dados
 * **API do Reddit:** Utilize a API do Reddit para coletar dados, como comentários e posts. Você pode usar o pacote *PRAW* (Python Reddit API Wrapper) para acessar a API do Reddit.
@@ -122,3 +120,17 @@ posts = subreddit.top('week', limit=1)
 
 ## Interpretação dos Resultados
 * **Insights:** Analise os resultados para identificar padrões e tirar conclusões sobre o sentimento predominante em relação ao tópico estudado.
+
+# O que é Pipeline
+No contexto de aprendizado de máquina e processamento de linguagem natural (PLN), um pipeline é uma sequência de etapas automatizadas que processam dados e realizam uma tarefa específica, como análise de sentimentos, tradução ou classificação.
+No caso de modelos pré-treinados, o pipeline encapsula todas as operações necessárias para processar os dados de entrada (como um texto) e gerar uma saída (como a classificação de sentimentos).
+A ideia aqui é que esse pipeline simplifica o processo, permitindo que o usuário execute uma tarefa complexa com poucos comandos.
+
+# O que é API
+Uma **API** (Application Programming Interface, ou Interface de Programação de Aplicações) é um conjunto de definições e protocolos que permitem que diferentes sistemas ou aplicativos se comuniquem entre si. Em outras palavras, uma API define as regras e métodos pelos quais um software pode solicitar serviços de outro, facilitando a integração entre sistemas.
+
+1. **Intermediário de Comunicação:** A API age como um intermediário, permitindo que um software interaja com outro sem que eles precisem conhecer os detalhes internos de como o outro funciona.
+2. **Padronização:** APIs estabelecem um conjunto de regras e funções que os desenvolvedores devem seguir ao integrar seus sistemas. Isso garante que a comunicação seja eficiente e previsível.
+3. **Uso Comum:** Elas são amplamente usadas para conectar aplicativos a serviços externos, como ao fazer uma solicitação para um servidor, acessar um banco de dados ou se comunicar com um serviço online (como APIs de redes sociais, APIs de pagamento, etc.).
+
+**Exemplo de uso:** Se um aplicativo quer exibir o clima atual de uma cidade, ele pode usar a API de um serviço meteorológico, que fornece os dados em tempo real para serem exibidos no aplicativo.
