@@ -121,12 +121,13 @@ posts = subreddit.top('week', limit=1)
 ## Interpretação dos Resultados
 * **Insights:** Analise os resultados para identificar padrões e tirar conclusões sobre o sentimento predominante em relação ao tópico estudado.
 
-# O que é Pipeline
+---
+## O que é Pipeline?
 No contexto de aprendizado de máquina e processamento de linguagem natural (PLN), um pipeline é uma sequência de etapas automatizadas que processam dados e realizam uma tarefa específica, como análise de sentimentos, tradução ou classificação.
 No caso de modelos pré-treinados, o pipeline encapsula todas as operações necessárias para processar os dados de entrada (como um texto) e gerar uma saída (como a classificação de sentimentos).
 A ideia aqui é que esse pipeline simplifica o processo, permitindo que o usuário execute uma tarefa complexa com poucos comandos.
 
-# O que é API
+## O que é uma API?
 Uma **API** (Application Programming Interface, ou Interface de Programação de Aplicações) é um conjunto de definições e protocolos que permitem que diferentes sistemas ou aplicativos se comuniquem entre si. Em outras palavras, uma API define as regras e métodos pelos quais um software pode solicitar serviços de outro, facilitando a integração entre sistemas.
 
 1. **Intermediário de Comunicação:** A API age como um intermediário, permitindo que um software interaja com outro sem que eles precisem conhecer os detalhes internos de como o outro funciona.
@@ -134,3 +135,10 @@ Uma **API** (Application Programming Interface, ou Interface de Programação de
 3. **Uso Comum:** Elas são amplamente usadas para conectar aplicativos a serviços externos, como ao fazer uma solicitação para um servidor, acessar um banco de dados ou se comunicar com um serviço online (como APIs de redes sociais, APIs de pagamento, etc.).
 
 **Exemplo de uso:** Se um aplicativo quer exibir o clima atual de uma cidade, ele pode usar a API de um serviço meteorológico, que fornece os dados em tempo real para serem exibidos no aplicativo.
+
+## O que é um Transformer?
+o ChatGPT, assim como todas as outras IAs de geração de texto, usa uma estrutura chamada Transformer, que foi desenvolvida por funcionários do Google em 2017. Ela é muito eficaz em capturar o contexto das palavras em uma frase, utilizando algo chamado mecanismo de atenção (*Attention Is All You Need*). O Google usou um Transformer para traduzir idiomas, mas você provavelmente já o usou para conversar com chat bots. Um Transformer faz um bom trabalho ao adivinhar a próxima palavra em uma frase, e é exatamente isso que o ChatGPT e modelos semelhantes fazem: eles geram texto uma palavra de cada vez, criando algo que parece coerente à primeira vista.
+
+Esse modelo revolucionou o campo do processamento de linguagem natural (NLP) ao superar os métodos anteriores, como RNNs (Redes Neurais Recorrentes) e LSTMs (Long Short-Term Memory), em tarefas como tradução automática e geração de texto.
+
+O Transformer usa mecanismos de atenção que são particularmente bons em capturar o contexto de palavras, permitindo que o modelo "preste atenção" em partes relevantes da sentença, independentemente da distância entre as palavras. Isso melhora muito a capacidade do modelo de lidar com dependências de longo alcance entre palavras.
