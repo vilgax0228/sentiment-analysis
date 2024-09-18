@@ -2,13 +2,13 @@
 
 A classificação de texto é o problema de atribuir um rótulo predefinido a um texto. Por exemplo, se alguém escreveu uma resenha de um filme dizendo "Eu gostei muito do filme, é fantástico!", queremos rotular a resenha como *positiva* ou *negativa*. Este é um problema de classificação de texto (text classification) chamado análise de sentimentos.
 
-```
-!pip install praw nltk matplotlib
+```python
+> !pip install praw nltk matplotlib
 
-import praw
-from nltk.sentiment import SentimentIntensityAnalyzer
-import nltk
-import matplotlib.pyplot as plt
+> import praw
+> from nltk.sentiment import SentimentIntensityAnalyzer
+> import nltk
+> import matplotlib.pyplot as plt
 
 # Baixar dados necessários para o VADER
 nltk.download('vader_lexicon')
@@ -69,14 +69,12 @@ O **VADER** foi originalmente projetado para análise de sentimentos em textos e
 **Transformers**:
 Para usar imediatamente um modelo em uma entrada fornecida (texto, imagem, áudio, ...), fornecemos a API de pipeline. Os pipelines agrupam um modelo pré-treinado com o pré-processamento que foi utilizado durante o treinamento desse modelo.
 Aqui está como usar rapidamente um pipeline para classificar textos como positivos ou negativos:
-```
-from transformers import pipeline
+```python
+> from transformers import pipeline
 
-classifier = pipeline("sentiment-analysis")
-text = "I hate it"
-classifier(text)
-```
-```
+> classifier = pipeline("sentiment-analysis")
+> text = "I hate it"
+> classifier(text)
 [{'label': 'NEGATIVE', 'score': 0.9996398687362671}]
 ```
 Como não fornecemos um modelo para pipeline(), ele usará um modelo padrão. Nesse caso, é o *distilbert-base-uncased-finetuned-sst-2-english*.
@@ -85,12 +83,10 @@ A segunda linha de código baixa e armazena em cache o modelo pré-treinado usad
 
 Muitas tarefas possuem um pipeline pré-treinado pronto para uso, tanto em NLP (*Natural Language Processing*) quanto em visão computacional e fala.
 
-```
-classifier = pipeline("sentiment-analysis", model="neuralmind/bert-base-portuguese-cased")
-text = "Eu odeio isso"
-classifier(text)
-```
-```
+```python
+> classifier = pipeline("sentiment-analysis", model="neuralmind/bert-base-portuguese-cased")
+> text = "Eu odeio isso"
+> classifier(text)
 [{'label': 'LABEL_0', 'score': 0.5079694390296936}]
 ```
 Aqui, especificamos o modelo. obs: LABEL_0 é para negativo e LABEL_1 é para positivo.
@@ -100,10 +96,10 @@ Podemos ver que apesar de ser uma sentença bem simples e sem ambiguidade, o mod
 ## Coleta de Dados
 * **API do Reddit:** Utilize a API do Reddit para coletar dados, como comentários e posts. Você pode usar o pacote *PRAW* (Python Reddit API Wrapper) para acessar a API do Reddit.
 * **Subreddits e Posts**: Escolha os subreddits ou posts específicos dos quais você deseja extrair os dados. Use o PRAW para filtrar por tópicos, palavras-chave ou período de tempo.
-```
+```python
 # Escolha um subreddit e obtenha os posts mais populares da semana
-subreddit = reddit.subreddit('relacionamentos')
-posts = subreddit.top('week', limit=1)
+> subreddit = reddit.subreddit('relacionamentos')
+> posts = subreddit.top('week', limit=1)
 ```
 
 ## Pré-Processamento dos Dados
