@@ -11,28 +11,28 @@ A classificação de texto é o problema de atribuir um rótulo predefinido a um
 > import matplotlib.pyplot as plt
 
 # Baixar dados necessários para o VADER
-nltk.download('vader_lexicon')
+> nltk.download('vader_lexicon')
 
 # Configuração da API do Reddit/Conectando-se à API do Reddit
-reddit = praw.Reddit(client_id='abc123',  #coloque aqui o seu id
+> reddit = praw.Reddit(client_id='abc123',  #coloque aqui o seu id
                      client_secret='1234567890abcdef1234567890abcdef',  # coloque aqui o seu secret
                      user_agent='my_user_agent')  # coloque aqui o seu user (nickname)
 
 # Obter um post específico por ID
-post_id = 'xyz123'  # Substitua pelo ID do post desejado
-post = reddit.submission(id=post_id)
+> post_id = 'xyz123'  # Substitua pelo ID do post desejado
+> post = reddit.submission(id=post_id)
 
 # Inicialize o analisador de sentimentos VADER
-sia = SentimentIntensityAnalyzer()
+> sia = SentimentIntensityAnalyzer()
 
 # Contadores para os sentimentos
-positivos = 0
-neutros = 0
-negativos = 0
+> positivos = 0
+> neutros = 0
+> negativos = 0
 
-print(f"\nTítulo do Post: {post.title}")
-post.comments.replace_more(limit=0)
-for comment in post.comments.list():
+> print(f"\nTítulo do Post: {post.title}")
+> post.comments.replace_more(limit=0)
+> for comment in post.comments.list():
     sentiment = sia.polarity_scores(comment.body)
     print(f"Comentário: {comment.body}")
     print(f"Sentimento: {sentiment}\n")
@@ -45,24 +45,24 @@ for comment in post.comments.list():
         neutros += 1
 
 # Dados para o gráfico de pizza
-labels = ['Positivos', 'Neutros', 'Negativos']
-sizes = [positivos, neutros, negativos]
-colors = ['green', 'gray', 'red']
-explode = (0.1, 0, 0)  # Destacar a fatia "Positivos"
+> labels = ['Positivos', 'Neutros', 'Negativos']
+> sizes = [positivos, neutros, negativos]
+> colors = ['green', 'gray', 'red']
+> explode = (0.1, 0, 0)  # Destacar a fatia "Positivos"
 
 # Criando o gráfico de pizza
-plt.figure(figsize=(6, 6))
-plt.pie(sizes, explode=explode, labels=labels, colors=colors,
+> plt.figure(figsize=(6, 6))
+> plt.pie(sizes, explode=explode, labels=labels, colors=colors,
         autopct='%1.1f%%', shadow=True, startangle=140)
-plt.title('Distribuição dos Sentimentos nos Comentários')
-plt.show()
+> plt.title('Distribuição dos Sentimentos nos Comentários')
+> plt.show()
 ```
 
 Visualizando a análise de sentimentos do post, id=1fc0h1q, 'AITA for refusing to buy my daughter another phone and "ruining her life"' graficamente:
 
 ![aita_img](https://github.com/user-attachments/assets/d1e45952-48e1-4192-9fb5-182694d9480c)
 
-# Português vs Inglês
+**Português vs Inglês**
 
 O **VADER** foi originalmente projetado para análise de sentimentos em textos em inglês e, portanto, não é adequado para outras línguas.
 
@@ -89,10 +89,12 @@ Muitas tarefas possuem um pipeline pré-treinado pronto para uso, tanto em NLP (
 > classifier(text)
 [{'label': 'LABEL_0', 'score': 0.5079694390296936}]
 ```
-Aqui, especificamos o modelo. obs: LABEL_0 é para negativo e LABEL_1 é para positivo.
+Aqui, especificamos o modelo. **obs:** LABEL_0 é para negativo e LABEL_1 é para positivo.
 
 Podemos ver que apesar de ser uma sentença bem simples e sem ambiguidade, o modelo dá um score (confiança) de 50,79%, o que indica, numa primeira análise, que ele simplesmente não é muito bom.
 
+---
+Agora veremos o passo a passo de como pôr em prática e começar a fazer análises mais complexas
 ## Coleta de Dados
 * **API do Reddit:** Utilize a API do Reddit para coletar dados, como comentários e posts. Você pode usar o pacote *PRAW* (Python Reddit API Wrapper) para acessar a API do Reddit.
 * **Subreddits e Posts**: Escolha os subreddits ou posts específicos dos quais você deseja extrair os dados. Use o PRAW para filtrar por tópicos, palavras-chave ou período de tempo.
@@ -112,7 +114,7 @@ Podemos ver que apesar de ser uma sentença bem simples e sem ambiguidade, o mod
 
 ## Análise e Visualização
 * **Agregação dos Resultados:** Depois de obter os scores de sentimento para cada comentário, você pode agregá-los para entender o sentimento geral de um tópico ou subreddit.
-* **Visualização:** Use bibliotecas como matplotlib ou seaborn para criar gráficos que mostram a distribuição dos sentimentos.
+* **Visualização:** Use bibliotecas como *matplotlib* ou *seaborn* para criar gráficos que mostram a distribuição dos sentimentos.
 
 ## Interpretação dos Resultados
 * **Insights:** Analise os resultados para identificar padrões e tirar conclusões sobre o sentimento predominante em relação ao tópico estudado.
